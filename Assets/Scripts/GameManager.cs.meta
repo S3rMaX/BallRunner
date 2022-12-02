@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 05b66496e9517294b83f39e1cabb913e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - inventory: {instanceID: 0}
+  - goLvl1: {fileID: 4703243734302713256, guid: 568aee1091c674140ad6add79b1a4933, type: 3}
+  - goLvl2: {fileID: 4548490419121993503, guid: 346d5d35c4f40c34fb0408ed9071b402, type: 3}
+  - goLvl3: {fileID: 2986298740482388555, guid: 5ba31ddb5fa238e45b9e753e2acff718, type: 3}
+  - goLvl4: {fileID: 6739575791313709317, guid: f1141d2ef470ff44995d4cddc5d80dbf, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
