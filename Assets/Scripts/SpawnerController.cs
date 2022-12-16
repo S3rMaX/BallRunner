@@ -12,34 +12,24 @@ public class SpawnerController : MonoBehaviour
     [SerializeField] enum Difficulties { Easy = 1, Normal , Hard}
     [SerializeField] private Difficulties difficulty;
 
-    [SerializeField] private bool isActive;
-    void Start()
+    [SerializeField]
+    void difficulties()
     {
-        
         switch (difficulty)
         {
             case Difficulties.Easy:
-                //Debug.Log("EASY MODE");
                 InvokeRepeating("SpawnEnemy", startDelay + 3f, spawnInterval + 3f);
                 break;
             case Difficulties.Normal:
-                //Debug.Log("NORMAL MODE");
                 InvokeRepeating("SpawnEnemy", startDelay, spawnInterval);
                 break;
             case Difficulties.Hard:
-                //Debug.Log("HARD MODE");
-                InvokeRepeating("SpawnEnemy", startDelay - 1f, spawnInterval -1f);
+                InvokeRepeating("SpawnEnemy", startDelay - 1f, spawnInterval - 1f);
                 break;
             default:
-                //Debug.Log("ERROR THIS IS NOT A GAME MODE AVAILABLE");
+                Debug.Log("ERROR THIS IS NOT A GAME MODE AVAILABLE");
                 break;
         }
-    }
-    
-    [SerializeField]
-    void Update()
-    {
-        
     }
 
     [SerializeField]
@@ -51,6 +41,14 @@ public class SpawnerController : MonoBehaviour
 
     public void SetActiveSpawner(bool status)
     {
-        isActive = status;
+        this.gameObject.SetActive(status);
+        if (!status) // If Status = false then the MonoBehaviour coroutines like "InvokeRepeating" Cancel
+        {
+            CancelInvoke();
+        }
+        else
+        {
+            difficulties();
+        }
     }
 }
