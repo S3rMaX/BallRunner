@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject spawnPointLvl02;
     [SerializeField] private GameObject spawnPointLvl03;
     [SerializeField] private GameObject spawnPointLvl04;
-    [SerializeField] private GameObject winningHud;
 
     [SerializeField] private GameObject inventoryPanel;
 
@@ -46,9 +45,6 @@ public class PlayerController : MonoBehaviour
         mPlayerLife = Hud.transform.Find("LifesPanel").GetComponent<PlayerLife>();
 
         defaultRotation = transform.rotation;
-
-        winningHud.SetActive(false);
-
         
     }
 
@@ -98,34 +94,6 @@ public class PlayerController : MonoBehaviour
             source.PlayOneShot(clip);
         }
 
-        if (other.gameObject.CompareTag("FinalPortal1"))
-        {
-            GameManager.instance.SwitchLevel();
-            transform.position = spawnPointLvl02.transform.position;
-            FindObjectOfType<AudioManager>().Play("PortalJump");
-        }
-
-        if (other.gameObject.CompareTag("FinalPortal2"))
-        {
-            GameManager.instance.SwitchLevel();
-            transform.position = spawnPointLvl03.transform.position;
-            FindObjectOfType<AudioManager>().Play("PortalJump");
-        }
-
-        if (other.gameObject.CompareTag("FinalPortal3"))
-        {
-            GameManager.instance.SwitchLevel();
-            transform.position = spawnPointLvl04.transform.position;
-            FindObjectOfType<AudioManager>().Play("PortalJump");
-        }
-
-        if (other.gameObject.CompareTag("FinalPortal4"))
-        {
-            winningHud.SetActive(true);
-            FindObjectOfType<AudioManager>().Play("PortalJump");
-            FindObjectOfType<AudioManager>().Play("Winning");
-        }
-
 
         if (other.gameObject.CompareTag("Item"))
         {
@@ -145,10 +113,10 @@ public class PlayerController : MonoBehaviour
                         if (item != null)
                         {
                             inventory.AddItem(item);
-                            Debug.Log("count after: " + InventoryItem);
+                            //Debug.Log("count after: " + InventoryItem);
 
                             mgInventory.RemoveInventoryOne(powerAmount);
-                            Debug.Log("left coins: " + mgInventory.GetPointQuantity()[0]);
+                            //Debug.Log("left coins: " + mgInventory.GetPointQuantity()[0]);
                         }
                     }
                     else
@@ -164,10 +132,10 @@ public class PlayerController : MonoBehaviour
                     if (item != null)
                     {
                         inventory.AddItem(item);
-                        Debug.Log("count after: " + InventoryItem);
+                        //Debug.Log("count after: " + InventoryItem);
 
                         mgInventory.RemoveInventoryOne(powerAmount);
-                        Debug.Log("left coins: " + mgInventory.GetPointQuantity()[0]);
+                        //Debug.Log("left coins: " + mgInventory.GetPointQuantity()[0]);
                     }
                 }
                 else

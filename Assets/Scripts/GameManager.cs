@@ -17,9 +17,20 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] levels currentlevel;
 
+    [SerializeField] GameObject[] spawnersLvl1;
+    [SerializeField] GameObject[] spawnersLvl2;
+    [SerializeField] GameObject[] spawnersLvl3;
+    [SerializeField] GameObject[] spawnersLvl4;
+
+    [SerializeField] private GameObject spawnPointLvl02;
+    [SerializeField] private GameObject spawnPointLvl03;
+    [SerializeField] private GameObject spawnPointLvl04;
+
+    [SerializeField] private GameObject Player;
+
     private void Start()
     {
-        
+        LevelController();
     }
 
     private void Awake()
@@ -39,10 +50,6 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private void Update()
-    {
-        LevelController();
-    }
 
     private void LevelController()
     {
@@ -53,6 +60,11 @@ public class GameManager : MonoBehaviour
                 goLvl2.SetActive(false);
                 goLvl3.SetActive(false);
                 goLvl4.SetActive(false);
+                DisableSpawners(spawnersLvl1, true);
+                DisableSpawners(spawnersLvl2, false);
+                DisableSpawners(spawnersLvl3, false);
+                DisableSpawners(spawnersLvl4, false);
+
                 break;
 
             case levels.lvl2:
@@ -60,6 +72,11 @@ public class GameManager : MonoBehaviour
                 goLvl2.SetActive(true);
                 goLvl3.SetActive(false);
                 goLvl4.SetActive(false);
+                DisableSpawners(spawnersLvl1, false);
+                DisableSpawners(spawnersLvl2, true);
+                DisableSpawners(spawnersLvl3, false);
+                DisableSpawners(spawnersLvl4, false);
+                Player.transform.position = spawnPointLvl02.transform.position;
                 break;
 
             case levels.lvl3:
@@ -67,6 +84,11 @@ public class GameManager : MonoBehaviour
                 goLvl2.SetActive(false);
                 goLvl3.SetActive(true);
                 goLvl4.SetActive(false);
+                DisableSpawners(spawnersLvl1, false);
+                DisableSpawners(spawnersLvl2, false);
+                DisableSpawners(spawnersLvl3, true);
+                DisableSpawners(spawnersLvl4, false);
+                Player.transform.position = spawnPointLvl03.transform.position;
                 break;
 
             case levels.lvl4:
@@ -74,6 +96,11 @@ public class GameManager : MonoBehaviour
                 goLvl2.SetActive(false);
                 goLvl3.SetActive(false);
                 goLvl4.SetActive(true);
+                DisableSpawners(spawnersLvl1, false);
+                DisableSpawners(spawnersLvl2, false);
+                DisableSpawners(spawnersLvl3, false);
+                DisableSpawners(spawnersLvl4, true);
+                Player.transform.position = spawnPointLvl04.transform.position;
                 break;
         }        
     }
@@ -84,16 +111,32 @@ public class GameManager : MonoBehaviour
         {
             case levels.lvl1:
                 currentlevel = levels.lvl2;
+                LevelController();
                 break;
 
             case levels.lvl2:
                 currentlevel = levels.lvl3;
+                LevelController();
                 break;
 
             case levels.lvl3:
                 currentlevel = levels.lvl4;
+                LevelController();
                 break;
         }
     }
 
+
+    public void DisableSpawners(GameObject[] spawners,bool active)
+    {
+        for (int i = 0; i < spawners.Length; i++)
+        {
+            GetSpawnerController(spawners[i]).SetActiveSpawner(active);
+        }
+    }
+
+    private SpawnerController GetSpawnerController(GameObject spawner)
+    {
+        return spawner.GetComponent<SpawnerController>();
+    }
 }
