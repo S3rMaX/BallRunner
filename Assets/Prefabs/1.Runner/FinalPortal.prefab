@@ -1083,10 +1083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5869e95d68752e43a9cb995a86a6883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPointLvl02: {fileID: 0}
-  spawnPointLvl03: {fileID: 0}
-  spawnPointLvl04: {fileID: 0}
-  winningHud: {fileID: 498970322092148278, guid: 818df83f52d077d42b297fb0f9a34c9e, type: 3}
+  winningHud: {fileID: 0}
 --- !u!1 &5507008532176625475
 GameObject:
   m_ObjectHideFlags: 0

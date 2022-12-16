@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class PortalController : MonoBehaviour
 {
-    [SerializeField] private GameObject winningHud;
+    [SerializeField] private GameObject[] winningHud;
 
     // Start is called before the first frame update
     void Start()
     {
-        winningHud.SetActive(false);
+        if (winningHud[0])
+        {
+            winningHud[0].SetActive(false);
+        }
     }
 
 
@@ -43,8 +46,7 @@ public class PortalController : MonoBehaviour
 
         if (this.gameObject.CompareTag("FinalPortal4"))
         {
-            Debug.Log("YOU WIN, SHOW THE HUD");
-            winningHud.SetActive(true);
+            winningHud[0].SetActive(true);
             FindObjectOfType<AudioManager>().Play("PortalJump");
             FindObjectOfType<AudioManager>().Play("Winning");
             Time.timeScale = 0f;
